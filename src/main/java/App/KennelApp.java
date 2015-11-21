@@ -17,7 +17,7 @@ public class KennelApp {
         
         Controller c = new Controller();
         
-        c.run();
+        c.run(); 
         
     }
     
