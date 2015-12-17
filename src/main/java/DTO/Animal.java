@@ -11,6 +11,7 @@ package DTO;
  */
 public abstract class Animal {
 
+    private int num;
     private String breed;
     private String name;
     private String gender;
@@ -64,6 +65,14 @@ public abstract class Animal {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
     
 }

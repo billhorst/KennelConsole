@@ -5,8 +5,10 @@
  */
 package DAO;
 
+import DTO.Animal;
 import DTO.Cat;
 import DTO.Dog;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -18,5 +20,8 @@ public interface DAOInterface {
     public ArrayList viewAnimals();
     public void addDog(Dog d);
     public void addCat(Cat c);
+    public void loadAnimals() throws Exception;
+    public void saveAnimals() throws IOException;
+    public Animal getAnimal(Integer number);
     
 }

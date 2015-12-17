@@ -23,7 +23,10 @@ public class Controller {
     DAOInterface dao = new DAOFileImpl();
 
     public void run() {
-
+        
+        //upon running the program, loads animals from animals.txt
+        loadAnimals();
+        
         int choice;
 
         io.printOut("Kennel program start");
@@ -37,7 +40,8 @@ public class Controller {
             io.printOut("4 - Delete an animal");
             io.printOut("5 - Edit an animal's info");
             io.printOut("6 - Search for an animal based on criteria");
-            io.printOut("7 - Exit program");
+            io.printOut("7 - Save animal list");
+            io.printOut("8 - Exit");
 
             io.printOut("---------------------");
             choice = io.promptForInt("Press number and then the enter button");
@@ -61,23 +65,28 @@ public class Controller {
                 case 6:
                     searchForAnimal();
                     break;
+                case 7:
+                    saveAnimals();
+                    break;
+                case 8:
+                    io.printOut("Bye");
+                    break;
                 default:
                     io.printOut("Unrecognized command");
-
-                    break;
             }
-        } while (choice != 7);
+        } while (choice != 8);
 
     }
 
     public void viewAllAnimals() {
 
         ArrayList<Animal> kennel = dao.viewAnimals();
-        io.printOut("List of animals: (total number: "+kennel.size()+")");
+        io.printOut("List of animals: (total number: " + kennel.size() + ")");
         io.printOut("----------------");
         for (Animal currentAnimal : kennel) {
 
-            io.printOut("Animal name: " + currentAnimal.getName());
+            io.printOut("Animal serial number: " + currentAnimal.getNum()
+                    + "Animal name: " + currentAnimal.getName());
         }
         io.printOut("----------------");
         io.printOut("Animal list end.");
@@ -130,6 +139,22 @@ public class Controller {
 
     public void searchForAnimal() {
 
+    }
+
+    public void saveAnimals() {
+        try {
+            dao.saveAnimals();
+        } catch (Exception e) {
+            io.printOut(e.getMessage());
+        }
+    }
+
+    public void loadAnimals() {
+        try {
+            dao.loadAnimals();
+        } catch (Exception e) {
+            io.printOut("There was a problem.");
+        }
     }
 
 }
