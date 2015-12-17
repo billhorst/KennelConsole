@@ -10,6 +10,7 @@ import DTO.Cat;
 import DTO.Dog;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -23,5 +24,6 @@ public interface DAOInterface {
     public void loadAnimals() throws Exception;
     public void saveAnimals() throws IOException;
     public Animal getAnimal(Integer number);
+    public ArrayList searchAnimals(String name);
     
 }

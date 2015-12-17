@@ -12,6 +12,7 @@ import DTO.Cat;
 import DTO.Dog;
 import com.bill.consoleio.ConsoleIO;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -35,13 +36,12 @@ public class Controller {
             io.printOut("--------------------");
             io.printOut("What do you want to do?");
             io.printOut("1 - View all animals");
-            io.printOut("2 - View animals by criteria");
+            io.printOut("2 - Search for an animal by name");
             io.printOut("3 - Add an animal");
             io.printOut("4 - Delete an animal");
             io.printOut("5 - Edit an animal's info");
-            io.printOut("6 - Search for an animal based on criteria");
-            io.printOut("7 - Save animal list");
-            io.printOut("8 - Exit");
+            io.printOut("6 - Save animal list");
+            io.printOut("7 - Exit");
 
             io.printOut("---------------------");
             choice = io.promptForInt("Press number and then the enter button");
@@ -51,7 +51,7 @@ public class Controller {
                     viewAllAnimals();
                     break;
                 case 2:
-                    viewAnimalsByCriteria();
+                    searchForAnimal();
                     break;
                 case 3:
                     addAnimal();
@@ -63,18 +63,15 @@ public class Controller {
                     editAnimalInfo();
                     break;
                 case 6:
-                    searchForAnimal();
-                    break;
-                case 7:
                     saveAnimals();
                     break;
-                case 8:
+                case 7:
                     io.printOut("Bye");
                     break;
                 default:
                     io.printOut("Unrecognized command");
             }
-        } while (choice != 8);
+        } while (choice != 7);
 
     }
 
@@ -138,7 +135,11 @@ public class Controller {
     }
 
     public void searchForAnimal() {
-
+        String name = io.promptForString("Enter the name of the animal to search for.");
+        ArrayList<Animal> results = dao.searchAnimals(name);
+        for (Animal currentAnimal : results) {
+            io.printOut(currentAnimal.getName());
+        };
     }
 
     public void saveAnimals() {

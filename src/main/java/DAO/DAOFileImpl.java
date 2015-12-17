@@ -56,12 +56,13 @@ public class DAOFileImpl implements DAOInterface {
         Scanner sc = new Scanner(new BufferedReader(new FileReader(ANIMALLIST)));
         String currentLine;
         String[] currentTokens;
-        
-        while(sc.hasNextLine()) {
+
+        while (sc.hasNextLine()) {
             currentLine = sc.nextLine();
             currentTokens = currentLine.split(DELIMETER);
-            
-            Animal currentAnimal = new Animal() {};
+
+            Animal currentAnimal = new Animal() {
+            };
             currentAnimal.setNum(Integer.parseInt(currentTokens[0]));
             currentAnimal.setBreed(currentTokens[1]);
             currentAnimal.setName(currentTokens[2]);
@@ -70,7 +71,7 @@ public class DAOFileImpl implements DAOInterface {
             currentAnimal.setDisposition(currentTokens[5]);
             currentAnimal.setWeight(Integer.parseInt(currentTokens[6]));
             kennel.put(Integer.parseInt(currentTokens[0]), currentAnimal);
-            number = Integer.parseInt(currentTokens[0]+1);
+            number = Integer.parseInt(currentTokens[0])+1;
         }
     }
 
@@ -78,23 +79,35 @@ public class DAOFileImpl implements DAOInterface {
     public void saveAnimals() throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(ANIMALLIST));
         for (int i = 0; i < kennel.size(); i++) {
-            out.println(this.getAnimal(i).getNum() + DELIMETER +
-                    this.getAnimal(i).getBreed() + DELIMETER + 
-                    this.getAnimal(i).getName() + DELIMETER + 
-                    this.getAnimal(i).getGender() + DELIMETER + 
-                    this.getAnimal(i).getAge() + DELIMETER +
-                    this.getAnimal(i).getDisposition() + DELIMETER +
-                    this.getAnimal(i).getWeight());
+            out.println(this.getAnimal(i).getNum() + DELIMETER
+                    + this.getAnimal(i).getBreed() + DELIMETER
+                    + this.getAnimal(i).getName() + DELIMETER
+                    + this.getAnimal(i).getGender() + DELIMETER
+                    + this.getAnimal(i).getAge() + DELIMETER
+                    + this.getAnimal(i).getDisposition() + DELIMETER
+                    + this.getAnimal(i).getWeight());
             out.flush();
         }
         out.close();
 
     }
-    
+
     @Override
     public Animal getAnimal(Integer number) {
         return (Animal) kennel.get(number);
     }
 
+    @Override
+    public ArrayList searchAnimals(String name) {
+        
+        Collection<Animal> animals = kennel.values();
+        ArrayList<Animal> searchList = new ArrayList<>();
+        for (Animal currentAnimal : animals) {
+            if(currentAnimal.getName().equals(name)) {
+                searchList.add(currentAnimal);
+            }
+        }        
+        return searchList;
+    }
 
 }
