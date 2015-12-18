@@ -127,11 +127,28 @@ public class Controller {
     }
 
     public void deleteAnimal() {
-
+        String delete = "n";
+        String name = io.promptForString("What's the name of the animal to delete?");
+        ArrayList<Animal> results = dao.searchAnimals(name);
+        for (Animal currentAnimal : results) {
+            io.printOut(currentAnimal.getNum() + currentAnimal.getName());
+        }
+        if (results.size() < 2) {
+            delete = io.promptForString("Delete " + results.get(0).getName() + "?");
+            if (delete.equals("y")) {
+                dao.deleteAnimal(results.get(0).getNum());
+            }
+        } else {
+            int animalDeleteNum = io.promptForInt("Enter number of animal to delete.");
+            delete = io.promptForString("Delete " + dao.getAnimal(animalDeleteNum).getName() + "?");
+            if (delete.equals("y")) {
+                dao.deleteAnimal(animalDeleteNum);
+            }
+        }
     }
 
     public void editAnimalInfo() {
-
+ 
     }
 
     public void searchForAnimal() {

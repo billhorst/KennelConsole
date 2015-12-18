@@ -110,4 +110,9 @@ public class DAOFileImpl implements DAOInterface {
         return searchList;
     }
 
+    @Override
+    public void deleteAnimal(int num) {
+        kennel.remove(num);
+    }
+
 }

@@ -25,5 +25,6 @@ public interface DAOInterface {
     public void saveAnimals() throws IOException;
     public Animal getAnimal(Integer number);
     public ArrayList searchAnimals(String name);
+    public void deleteAnimal(int num);
     
 }

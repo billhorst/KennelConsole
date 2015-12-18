@@ -1,4 +1,4 @@
 0::Mix::Reitan::Female::15::Nice::10
 1::Lab::Brooklyn::Male::8::Happy::25
 2::Lab::Cheyenne::Female::12::Sweet::20
-3::Tabby::Snappy::Male::3::Crazy::5
+3::Greyhound::Snappy::Male::4::Happy::33
