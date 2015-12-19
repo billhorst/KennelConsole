@@ -25,7 +25,7 @@ import java.util.Scanner;
 public class DAOFileImpl implements DAOInterface {
 
     HashMap<Integer, Animal> kennel = new HashMap<>();
-    public static int number;
+    public static Integer number;
     public static final String ANIMALLIST = "animals.txt";
     public static final String DELIMETER = "::";
 
@@ -111,7 +111,7 @@ public class DAOFileImpl implements DAOInterface {
     }
 
     @Override
-    public void deleteAnimal(int num) {
+    public void deleteAnimal(Integer num) {
         kennel.remove(num);
     }
 

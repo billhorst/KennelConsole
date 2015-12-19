@@ -11,7 +11,7 @@ package DTO;
  */
 public abstract class Animal {
 
-    private int num;
+    private Integer num;
     private String breed;
     private String name;
     private String gender;

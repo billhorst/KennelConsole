@@ -24,10 +24,10 @@ public class Controller {
     DAOInterface dao = new DAOFileImpl();
 
     public void run() {
-        
+
         //upon running the program, loads animals from animals.txt
         loadAnimals();
-        
+
         int choice;
 
         io.printOut("Kennel program start");
@@ -44,7 +44,8 @@ public class Controller {
             io.printOut("7 - Exit");
 
             io.printOut("---------------------");
-            choice = io.promptForInt("Press number and then the enter button");
+
+            choice = io.promptForIntMinMax("Press number and then the enter button", 1, 6);
 
             switch (choice) {
                 case 1:
@@ -82,8 +83,8 @@ public class Controller {
         io.printOut("----------------");
         for (Animal currentAnimal : kennel) {
 
-            io.printOut("Animal serial number: " + currentAnimal.getNum()
-                    + "Animal name: " + currentAnimal.getName());
+            io.printOut("Name: " + currentAnimal.getName()
+                    + "(Serial # " + currentAnimal.getNum() + ")");
         }
         io.printOut("----------------");
         io.printOut("Animal list end.");
@@ -127,18 +128,21 @@ public class Controller {
     }
 
     public void deleteAnimal() {
-        String delete = "n";
+        String delete = "";
         String name = io.promptForString("What's the name of the animal to delete?");
         ArrayList<Animal> results = dao.searchAnimals(name);
         for (Animal currentAnimal : results) {
             io.printOut(currentAnimal.getNum() + currentAnimal.getName());
         }
-        if (results.size() < 2) {
+        if (results.size() == 0) {
+            io.printOut("No results...");
+        } else if (results.size() == 1) {
             delete = io.promptForString("Delete " + results.get(0).getName() + "?");
             if (delete.equals("y")) {
                 dao.deleteAnimal(results.get(0).getNum());
             }
         } else {
+            io.printOut("There are two or more animals with that name.");
             int animalDeleteNum = io.promptForInt("Enter number of animal to delete.");
             delete = io.promptForString("Delete " + dao.getAnimal(animalDeleteNum).getName() + "?");
             if (delete.equals("y")) {
@@ -148,14 +152,22 @@ public class Controller {
     }
 
     public void editAnimalInfo() {
- 
+
     }
 
     public void searchForAnimal() {
         String name = io.promptForString("Enter the name of the animal to search for.");
         ArrayList<Animal> results = dao.searchAnimals(name);
         for (Animal currentAnimal : results) {
-            io.printOut(currentAnimal.getName());
+            io.printOut("---------------------------");
+            io.printOut("Serial Number: " + currentAnimal.getNum()
+                    + "\nName: " + currentAnimal.getName() + " (" + currentAnimal.getGender() + ")"
+                    + "\nBreed: " + currentAnimal.getBreed()
+                    + "\nAge: " + currentAnimal.getAge()
+                    + "\nDisposition: " + currentAnimal.getDisposition()
+                    + "\nWeight: " + currentAnimal.getWeight());
+
+            io.printOut("---------------------------");
         };
     }
 
@@ -163,7 +175,7 @@ public class Controller {
         try {
             dao.saveAnimals();
         } catch (Exception e) {
-            io.printOut(e.getMessage());
+            io.printOut("There was a problem saving.");
         }
     }
 
@@ -171,7 +183,7 @@ public class Controller {
         try {
             dao.loadAnimals();
         } catch (Exception e) {
-            io.printOut("There was a problem.");
+            io.printOut("There was a problem loading.");
         }
     }
 
