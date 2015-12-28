@@ -115,4 +115,11 @@ public class DAOFileImpl implements DAOInterface {
         kennel.remove(num);
     }
 
+    @Override
+    public void editAnimal(Animal animal) {
+        kennel.put(animal.getNum(), animal);
+    }
+    
+    
+
 }

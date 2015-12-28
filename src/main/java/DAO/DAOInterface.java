@@ -26,5 +26,6 @@ public interface DAOInterface {
     public Animal getAnimal(Integer number);
     public ArrayList searchAnimals(String name);
     public void deleteAnimal(Integer num);
+    public void editAnimal(Animal animal);
     
 }
