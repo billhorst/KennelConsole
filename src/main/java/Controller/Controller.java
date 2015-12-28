@@ -155,39 +155,51 @@ public class Controller {
 
         String name = io.promptForString("Name of animal to edit?");
 
-        io.printOut("The following animals match the name of animal to edit:");
         ArrayList<Animal> results = dao.searchAnimals(name);
 
-        for (Animal currentAnimal : results) {
-            io.printOut("Serial Number: " + currentAnimal.getNum()
-                    + "\nName: " + currentAnimal.getName() + " (" + currentAnimal.getGender() + ")"
-                    + "\nBreed: " + currentAnimal.getBreed()
-                    + "\nAge: " + currentAnimal.getAge()
-                    + "\nDisposition: " + currentAnimal.getDisposition()
-                    + "\nWeight: " + currentAnimal.getWeight());
+        if (results.size() > 0) {
+
+            io.printOut("The following animals match the name of animal to edit:");
+
+            for (Animal currentAnimal : results) {
+                io.printOut("Serial Number: " + currentAnimal.getNum()
+                        + "\nName: " + currentAnimal.getName() + " (" + currentAnimal.getGender() + ")"
+                        + "\nBreed: " + currentAnimal.getBreed()
+                        + "\nAge: " + currentAnimal.getAge()
+                        + "\nDisposition: " + currentAnimal.getDisposition()
+                        + "\nWeight: " + currentAnimal.getWeight());
+            }
+            int animalNumber;
+            try {
+                animalNumber = io.promptForInt("Enter serial number of animal to edit.");
+
+                Animal oldAnimal = dao.getAnimal(animalNumber);
+
+                Animal newAnimal = new Animal() {
+                };
+
+                newAnimal.setNum(animalNumber);
+                io.printOut("Name: " + oldAnimal.getName());
+                newAnimal.setName(io.promptForString("Name: "));
+                io.printOut("Gender: " + oldAnimal.getGender());
+                newAnimal.setGender(io.promptForString("Gender: "));
+                io.printOut("Breed: " + oldAnimal.getBreed());
+                newAnimal.setBreed(io.promptForString("Breed: "));
+                io.printOut("Age: " + oldAnimal.getAge());
+                newAnimal.setAge(io.promptForInt("Age: "));
+                io.printOut("Disposition: " + oldAnimal.getDisposition());
+                newAnimal.setDisposition(io.promptForString("Disposition: "));
+                io.printOut("Weight: " + oldAnimal.getWeight());
+                newAnimal.setWeight(io.promptForInt("Weight: "));
+
+                dao.editAnimal(newAnimal);
+
+            } catch (Exception e) {
+                System.out.println("Animal not found.");
+            }
+        } else {
+            io.printOut("Animal not found.");
         }
-        int animalNumber = io.promptForInt("Enter serial number of animal to edit.");
-        
-        Animal oldAnimal = dao.getAnimal(animalNumber);
-        
-        Animal newAnimal = new Animal() {};
-        
-        newAnimal.setNum(animalNumber);
-        io.printOut("Name: " + oldAnimal.getName());
-        newAnimal.setName(io.promptForString("Name: "));
-        io.printOut("Gender: " + oldAnimal.getGender());
-        newAnimal.setGender(io.promptForString("Gender: "));
-        io.printOut("Breed: " + oldAnimal.getBreed());
-        newAnimal.setBreed(io.promptForString("Breed: "));
-        io.printOut("Age: " + oldAnimal.getAge());
-        newAnimal.setAge(io.promptForInt("Age: "));
-        io.printOut("Disposition: " + oldAnimal.getDisposition());
-        newAnimal.setDisposition(io.promptForString("Disposition: "));
-        io.printOut("Weight: " + oldAnimal.getWeight());
-        newAnimal.setWeight(io.promptForInt("Weight: "));
-        
-        dao.editAnimal(newAnimal);
-        
 
     }
 
