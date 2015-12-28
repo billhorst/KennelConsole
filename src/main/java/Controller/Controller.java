@@ -45,7 +45,7 @@ public class Controller {
 
             io.printOut("---------------------");
 
-            choice = io.promptForIntMinMax("Press number and then the enter button", 1, 7);
+            choice = io.promptForInt("Press number and then the enter button", 1, 7);
 
             switch (choice) {
                 case 1:
