@@ -1,7 +1,7 @@
-0::Mix::Reitan::Female::15::Nice::10
-1::Lab::Brooklyn::Male::8::Happy::25
-2::Lab::Cheyenne::Female::12::Sweet::20
-3::Terrier::Terry::Male::33::Happy::13
-4::Tabby::Tabitha::Female::13::Mean::7
-5::Wiener Dog::Weeny::Male::3::Weeny::3
-6::Weener Dog::Butch::33::3::Happy::3
+0::Mix::Reitan::Female::15::Nice::10.0
+1::Lab::Brooklyn::Male::8::Happy::25.0
+2::Lab::Cheyenne::Female::12::Sweet::20.0
+3::Terrier::Terry::Male::33::Happy::13.0
+4::Tabby::Tabitha::Female::13::Mean::7.0
+5::Wiener Dog::Weeny::Male::3::Weeny::3.0
+6::Weiner Dog::Butcheroo::Male::4::Happy::3.0

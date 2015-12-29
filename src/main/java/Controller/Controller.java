@@ -106,6 +106,8 @@ public class Controller {
         a.setDisposition(disposition);
         a.setWeight(weight);
         dao.addAnimal(a);
+        
+        io.printOut(name+" added.");
 
     }
 
@@ -119,9 +121,12 @@ public class Controller {
         if (results.size() == 0) {
             io.printOut("No results...");
         } else if (results.size() == 1) {
-            delete = io.promptForString("Delete " + results.get(0).getName() + "?");
+            delete = io.promptForString("Delete " + results.get(0).getName() + "? (y) / (n)");
             if (delete.equals("y")) {
                 dao.deleteAnimal(results.get(0).getNum());
+                io.printOut("--------");
+                io.printOut("Deleted");
+                io.printOut("--------");
             }
         } else {
             io.printOut("There are two or more animals with that name.");
@@ -129,6 +134,9 @@ public class Controller {
             delete = io.promptForString("Delete " + dao.getAnimal(animalDeleteNum).getName() + "?");
             if (delete.equals("y")) {
                 dao.deleteAnimal(animalDeleteNum);
+                io.printOut("--------");
+                io.printOut("Deleted");
+                io.printOut("--------");
             }
         }
     }
@@ -142,6 +150,7 @@ public class Controller {
         if (results.size() > 0) {
 
             io.printOut("The following animals match the name of animal to edit:");
+            io.printOut("-------------------------------------------------------");
 
             for (Animal currentAnimal : results) {
                 io.printOut("Serial Number: " + currentAnimal.getNum()
@@ -153,6 +162,7 @@ public class Controller {
             }
             int animalNumber;
             try {
+                io.printOut("---------------------------------------------");
                 animalNumber = io.promptForInt("Enter serial number of animal to edit.");
 
                 Animal oldAnimal = dao.getAnimal(animalNumber);
@@ -161,18 +171,18 @@ public class Controller {
                 };
 
                 newAnimal.setNum(animalNumber);
-                io.printOut("Name: " + oldAnimal.getName());
-                newAnimal.setName(io.promptForString("Name: "));
-                io.printOut("Gender: " + oldAnimal.getGender());
-                newAnimal.setGender(io.promptForString("Gender: "));
-                io.printOut("Breed: " + oldAnimal.getBreed());
-                newAnimal.setBreed(io.promptForString("Breed: "));
-                io.printOut("Age: " + oldAnimal.getAge());
-                newAnimal.setAge(io.promptForInt("Age: "));
-                io.printOut("Disposition: " + oldAnimal.getDisposition());
-                newAnimal.setDisposition(io.promptForString("Disposition: "));
-                io.printOut("Weight: " + oldAnimal.getWeight());
-                newAnimal.setWeight(io.promptForDouble("Weight: "));
+                io.printOut("Old name: " + oldAnimal.getName());
+                newAnimal.setName(io.promptForString("New name: "));
+                io.printOut("Old gender: " + oldAnimal.getGender());
+                newAnimal.setGender(io.promptForString("New gender: "));
+                io.printOut("Old breed: " + oldAnimal.getBreed());
+                newAnimal.setBreed(io.promptForString("New breed: "));
+                io.printOut("Old age: " + oldAnimal.getAge());
+                newAnimal.setAge(io.promptForInt("New age: "));
+                io.printOut("Old disposition: " + oldAnimal.getDisposition());
+                newAnimal.setDisposition(io.promptForString("New disposition: "));
+                io.printOut("Old weight: " + oldAnimal.getWeight());
+                newAnimal.setWeight(io.promptForDouble("New weight: "));
 
                 dao.editAnimal(newAnimal);
 
@@ -207,6 +217,9 @@ public class Controller {
     public void saveAnimals() {
         try {
             dao.saveAnimals();
+            io.printOut("------------------");
+            io.printOut("Animal list saved.");
+            io.printOut("------------------");
         } catch (Exception e) {
             io.printOut("There was a problem saving.");
         }

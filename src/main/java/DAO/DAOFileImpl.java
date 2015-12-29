@@ -60,7 +60,7 @@ public class DAOFileImpl implements DAOInterface {
             currentAnimal.setGender(currentTokens[3]);
             currentAnimal.setAge(Integer.parseInt(currentTokens[4]));
             currentAnimal.setDisposition(currentTokens[5]);
-            currentAnimal.setWeight(Integer.parseInt(currentTokens[6]));
+            currentAnimal.setWeight(Double.parseDouble(currentTokens[6]));
             kennel.put(Integer.parseInt(currentTokens[0]), currentAnimal);
             number = Integer.parseInt(currentTokens[0])+1;
         }
