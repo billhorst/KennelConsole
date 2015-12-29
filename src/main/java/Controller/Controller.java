@@ -8,8 +8,6 @@ package Controller;
 import DAO.DAOFileImpl;
 import DAO.DAOInterface;
 import DTO.Animal;
-import DTO.Cat;
-import DTO.Dog;
 import com.bill.consoleio.ConsoleIO;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,41 +88,25 @@ public class Controller {
         io.printOut("Animal list end.");
     }
 
-    public void viewAnimalsByCriteria() {
-
-    }
-
     public void addAnimal() {
-        Dog d = new Dog();
-        Cat c = new Cat();
+        Animal a = new Animal() {
+        };
         io.printOut("Answer the following:");
-        String type = io.promptForString("Is new animal a dog (d) or cat (c)?");
         String breed = io.promptForString("Animal's breed?");
         String name = io.promptForString("Animal's name?");
         String gender = io.promptForString("Animal's gender?");
         int age = io.promptForInt("Animal's age?");
         String disposition = io.promptForString("Animal's disposition?");
-        int weight = io.promptForInt("Animal's weight?");
+        double weight = io.promptForDouble("Animal's weight?");
 
-        if (type.equals("d")) {
-            d.setBreed(breed);
-            d.setName(name);
-            d.setGender(gender);
-            d.setAge(age);
-            d.setDisposition(disposition);
-            d.setWeight(weight);
-            dao.addDog(d);
-        } else if (type.equals("c")) {
-            c.setBreed(breed);
-            c.setName(name);
-            c.setGender(gender);
-            c.setAge(age);
-            c.setDisposition(disposition);
-            c.setWeight(weight);
-            dao.addCat(c);
-        } else {
-            io.printOut("Unrecognized command... Going back");
-        }
+        a.setBreed(breed);
+        a.setName(name);
+        a.setGender(gender);
+        a.setAge(age);
+        a.setDisposition(disposition);
+        a.setWeight(weight);
+        dao.addAnimal(a);
+
     }
 
     public void deleteAnimal() {
@@ -190,7 +172,7 @@ public class Controller {
                 io.printOut("Disposition: " + oldAnimal.getDisposition());
                 newAnimal.setDisposition(io.promptForString("Disposition: "));
                 io.printOut("Weight: " + oldAnimal.getWeight());
-                newAnimal.setWeight(io.promptForInt("Weight: "));
+                newAnimal.setWeight(io.promptForDouble("Weight: "));
 
                 dao.editAnimal(newAnimal);
 
@@ -217,6 +199,9 @@ public class Controller {
 
             io.printOut("---------------------------");
         };
+        if (results.size() == 0) {
+            io.printOut("No animals found with that name.");
+        }
     }
 
     public void saveAnimals() {

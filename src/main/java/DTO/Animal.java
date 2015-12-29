@@ -17,7 +17,7 @@ public abstract class Animal {
     private String gender;
     private int age;
     private String disposition;
-    private int weight;
+    private double weight;
 
     public String getBreed() {
         return breed;
@@ -59,11 +59,11 @@ public abstract class Animal {
         this.disposition = disposition;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

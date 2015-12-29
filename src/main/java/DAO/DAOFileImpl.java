@@ -6,8 +6,6 @@
 package DAO;
 
 import DTO.Animal;
-import DTO.Cat;
-import DTO.Dog;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -38,16 +36,9 @@ public class DAOFileImpl implements DAOInterface {
     }
 
     @Override
-    public void addDog(Dog d) {
-        d.setNum(number);
-        kennel.put(number, d);
-        number++;
-    }
-
-    @Override
-    public void addCat(Cat c) {
-        c.setNum(number);
-        kennel.put(number, c);
+    public void addAnimal(Animal a) {
+        a.setNum(number);
+        kennel.put(number, a);
         number++;
     }
 

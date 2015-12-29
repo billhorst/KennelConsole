@@ -6,11 +6,8 @@
 package DAO;
 
 import DTO.Animal;
-import DTO.Cat;
-import DTO.Dog;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -19,8 +16,7 @@ import java.util.HashMap;
 public interface DAOInterface {
     
     public ArrayList viewAnimals();
-    public void addDog(Dog d);
-    public void addCat(Cat c);
+    public void addAnimal(Animal a);
     public void loadAnimals() throws Exception;
     public void saveAnimals() throws IOException;
     public Animal getAnimal(Integer number);
