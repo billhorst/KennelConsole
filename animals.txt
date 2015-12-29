@@ -7,3 +7,4 @@
 6::Mix::Butch::Male::7::Happy::3.3
 10::HottyCat::Fifi::Male::12::Ambitious::12.0
 12::Mangy::Fifi::Female::12::Jaded::12.0
+13::Chihuahua::Moco::Male::12::Scares easily?::0.01
