@@ -69,14 +69,14 @@ public class DAOFileImpl implements DAOInterface {
     @Override
     public void saveAnimals() throws IOException {
         PrintWriter out = new PrintWriter(new FileWriter(ANIMALLIST));
-        for (int i = 0; i < kennel.size(); i++) {
-            out.println(this.getAnimal(i).getNum() + DELIMETER
-                    + this.getAnimal(i).getBreed() + DELIMETER
-                    + this.getAnimal(i).getName() + DELIMETER
-                    + this.getAnimal(i).getGender() + DELIMETER
-                    + this.getAnimal(i).getAge() + DELIMETER
-                    + this.getAnimal(i).getDisposition() + DELIMETER
-                    + this.getAnimal(i).getWeight());
+        for (Animal thisAnimal : kennel.values()) {
+            out.println(thisAnimal.getNum() + DELIMETER
+                    + thisAnimal.getBreed() + DELIMETER
+                    + thisAnimal.getName() + DELIMETER
+                    + thisAnimal.getGender() + DELIMETER
+                    + thisAnimal.getAge() + DELIMETER
+                    + thisAnimal.getDisposition() + DELIMETER
+                    + thisAnimal.getWeight());
             out.flush();
         }
         out.close();
@@ -109,6 +109,11 @@ public class DAOFileImpl implements DAOInterface {
     @Override
     public void editAnimal(Animal animal) {
         kennel.put(animal.getNum(), animal);
+    }
+
+    @Override
+    public int getMaxAnimalNum() {
+        return number;
     }
     
     

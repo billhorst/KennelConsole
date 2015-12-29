@@ -23,5 +23,6 @@ public interface DAOInterface {
     public ArrayList searchAnimals(String name);
     public void deleteAnimal(Integer num);
     public void editAnimal(Animal animal);
+    public int getMaxAnimalNum();
     
 }

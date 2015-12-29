@@ -106,9 +106,9 @@ public class Controller {
         a.setDisposition(disposition);
         a.setWeight(weight);
         dao.addAnimal(a);
-        
-        io.printOut(name+" added.");
 
+        io.printOut("---------------");
+        io.printOut(name + " added.");
     }
 
     public void deleteAnimal() {
@@ -129,14 +129,27 @@ public class Controller {
                 io.printOut("--------");
             }
         } else {
-            io.printOut("There are two or more animals with that name.");
-            int animalDeleteNum = io.promptForInt("Enter number of animal to delete.");
-            delete = io.promptForString("Delete " + dao.getAnimal(animalDeleteNum).getName() + "?");
-            if (delete.equals("y")) {
-                dao.deleteAnimal(animalDeleteNum);
-                io.printOut("--------");
-                io.printOut("Deleted");
-                io.printOut("--------");
+            io.printOut("There are two or more animals with that name:");
+            for (Animal currentAnimal : results) {
+                io.printOut(currentAnimal.getName() + " (#" + currentAnimal.getNum() + (")"));
+            }
+
+            try {
+                int animalDeleteNum = io.promptForInt("Enter number of animal to delete."
+                        + " (-1) to cancel", -1, dao.getMaxAnimalNum() - 1);
+                if (animalDeleteNum == -1) {
+                    io.printOut("'Delete' process canceled");
+                    return;
+                }
+                delete = io.promptForString("Delete " + dao.getAnimal(animalDeleteNum).getName() + "? (y) / (n)");
+                if (delete.equals("y")) {
+                    dao.deleteAnimal(animalDeleteNum);
+                    io.printOut("-------");
+                    io.printOut("Deleted");
+                    io.printOut("-------");
+                }
+            } catch (Exception e) {
+                io.printOut("Error");
             }
         }
     }
@@ -159,6 +172,7 @@ public class Controller {
                         + "\nAge: " + currentAnimal.getAge()
                         + "\nDisposition: " + currentAnimal.getDisposition()
                         + "\nWeight: " + currentAnimal.getWeight());
+                io.printOut("---------------------------------");
             }
             int animalNumber;
             try {
@@ -210,6 +224,7 @@ public class Controller {
             io.printOut("---------------------------");
         };
         if (results.size() == 0) {
+            io.printOut("--------------------------------");
             io.printOut("No animals found with that name.");
         }
     }
